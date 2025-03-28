@@ -16,7 +16,7 @@ public class WebDriverFactory {
         if (browser.equals(Browsers.CHROME)) {
             System.setProperty(WEBDRIVER_CHROME_DRIVER_PROPERTY, webDriverConfig.chromeDriverPath());
             return new ChromeDriver();
-        } else if (browser.equals(Browsers.CHROME)) {
+        } else if (browser.equals(Browsers.YANDEX)) {
             System.setProperty(WEBDRIVER_CHROME_DRIVER_PROPERTY, webDriverConfig.yandexDriverPath());
             return new ChromeDriver();
         } else {
