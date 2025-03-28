@@ -8,4 +8,8 @@ public class UserResponse {
     private boolean success;
     private Map<String, String> user;
     private String accessToken;
+
+    public String getAccessToken() {
+        return accessToken;
+    }
 }
