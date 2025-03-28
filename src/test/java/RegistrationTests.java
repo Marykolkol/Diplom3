@@ -1,8 +1,6 @@
 import config.WebDriverFactory;
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.response.ValidatableResponse;
 import model.User;
-import model.UserResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,5 +1,5 @@
 package model;
 
 public enum Browsers {
-    CHROME, YANDEX;
+    CHROME, YANDEX
 }

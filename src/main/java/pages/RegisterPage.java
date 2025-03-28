@@ -9,10 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.Random;
-
 public class RegisterPage {
-    private WebDriver driver;
+    private final WebDriver driver;
 
     //поле ввода имени
     @FindBy(xpath = ".//label[text()='Имя']/parent::div/input")
@@ -35,7 +33,7 @@ public class RegisterPage {
     private WebElement loginButton;
 
     //ошибка "Некорректный пароль"
-    private By error = By.xpath(".//p[text()='Некорректный пароль']");
+    private final By error = By.xpath(".//p[text()='Некорректный пароль']");
 
     public RegisterPage (WebDriver driver) {
         this.driver = driver;

@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import pages.ConstructorPage;
 import pages.LoginPage;
-import pages.PersonalPage;
 
 import java.util.Map;
 

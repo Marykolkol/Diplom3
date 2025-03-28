@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class ForgotPasswordPage {
-    private WebDriver driver;
+    private final WebDriver driver;
 
     //кнопка "Войти"
     @FindBy(xpath = ".//a[@class='Auth_link__1fOlj' and text()='Войти']")

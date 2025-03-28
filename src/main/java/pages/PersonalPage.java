@@ -9,19 +9,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class PersonalPage {
-    private WebDriver driver;
+    private final WebDriver driver;
 
     //кнопка "Выход"
-    private By exitButton = By.xpath(".//button[text()='Выход']");
+    private final By exitButton = By.xpath(".//button[text()='Выход']");
 
     //кнопка "Конструктор"
-    private By constructorButton = By.xpath(".//p[@class='AppHeader_header__linkText__3q_va ml-2' and text() = 'Конструктор']/parent::a");
+    private final By constructorButton = By.xpath(".//p[@class='AppHeader_header__linkText__3q_va ml-2' and text() = 'Конструктор']/parent::a");
 
     //логотип Бургера
-    private By logo = By.xpath(".//div[@class='AppHeader_header__logo__2D0X2']");
+    private final By logo = By.xpath(".//div[@class='AppHeader_header__logo__2D0X2']");
 
     //название поля "Профиль"
-    private By profileSign = By.xpath(".//a[@class='Account_link__2ETsJ text text_type_main-medium text_color_inactive Account_link_active__2opc9']");
+    private final By profileSign = By.xpath(".//a[@class='Account_link__2ETsJ text text_type_main-medium text_color_inactive Account_link_active__2opc9']");
 
     public PersonalPage (WebDriver driver) {
         this.driver = driver;
