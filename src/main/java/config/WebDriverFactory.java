@@ -1,6 +1,6 @@
 package config;
 
-import model.Browsers;
+import model.Browser;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,12 +11,12 @@ public class WebDriverFactory {
     private static final String WEBDRIVER_CHROME_DRIVER_PROPERTY = "webdriver.chrome.driver";
 
     public static WebDriver createWebDriver() {
-        Browsers browser = getActiveBrowser();
+        Browser browser = getActiveBrowser();
         WebDriverConfig webDriverConfig = ConfigFactory.create(WebDriverConfig.class);
-        if (browser.equals(Browsers.CHROME)) {
+        if (browser.equals(Browser.CHROME)) {
             System.setProperty(WEBDRIVER_CHROME_DRIVER_PROPERTY, webDriverConfig.chromeDriverPath());
             return new ChromeDriver();
-        } else if (browser.equals(Browsers.YANDEX)) {
+        } else if (browser.equals(Browser.YANDEX)) {
             System.setProperty(WEBDRIVER_CHROME_DRIVER_PROPERTY, webDriverConfig.yandexDriverPath());
             return new ChromeDriver();
         } else {
@@ -24,8 +24,8 @@ public class WebDriverFactory {
         }
     }
 
-    private static Browsers getActiveBrowser() {
+    private static Browser getActiveBrowser() {
         String browserName = System.getProperty(BROWSER_PROPERTY, DEFAULT_BROWSER);
-        return Browsers.valueOf(browserName.toUpperCase());
+        return Browser.valueOf(browserName.toUpperCase());
     }
 }

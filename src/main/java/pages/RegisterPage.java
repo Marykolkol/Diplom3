@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,6 +41,7 @@ public class RegisterPage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Заполнение формы и нажатие кнопки 'Регистрация'")
     public LoginPage fillRegistrationFormAndClick(String name, String email, String password) {
         nameInput.sendKeys(name);
         emailInput.sendKeys(email);
@@ -48,11 +50,13 @@ public class RegisterPage {
         return new LoginPage(driver);
     }
 
+    @Step("Нажатие кнопки 'Войти'")
     public LoginPage clickLoginButton() {
         loginButton.click();
         return new LoginPage(driver);
     }
 
+    @Step("Проверка наличия сообщения об ошибке")
     public boolean isErrorVisible() {
         try{
             new WebDriverWait(driver, Duration.ofSeconds(10))

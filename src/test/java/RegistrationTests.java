@@ -1,6 +1,9 @@
+import client.UserClient;
 import config.WebDriverFactory;
 import io.qameta.allure.junit4.DisplayName;
+import io.restassured.response.ValidatableResponse;
 import model.User;
+import model.UserResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,12 +22,18 @@ import static org.junit.Assert.assertTrue;
 public class RegistrationTests {
     private WebDriver driver;
     Random RANDOM = new Random();
+    private UserClient userClient = new UserClient();
+    private UserResponse userResponse = new UserResponse();
+    private User user;
+    Map<String, String> data;
 
     @Before
     @DisplayName("Подготовка данных")
     public void prepareDriver(){
         driver = WebDriverFactory.createWebDriver();
         driver.get(STELLAR_BASE_URI + "register");
+        data = setRandomValues();
+        user = new User(data.get("email"), data.get("password"), data.get("name"));
     }
 
     public Map<String, String> setRandomValues() {
@@ -36,17 +45,16 @@ public class RegistrationTests {
     @Test
     @DisplayName("Успешная регистрация")
     public void successRegister() {
-        Map<String, String> data = setRandomValues();
-
         RegisterPage registerPage = new RegisterPage(driver);
         LoginPage loginPage = registerPage.fillRegistrationFormAndClick(data.get("name"), data.get("email"), data.get("password"));
         driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.MILLISECONDS);
         assertTrue(loginPage.isLoginButtonVisible());
 
-        User user = new User(data.get("email"), data.get("password"), data.get("name"));
         ConstructorPage authorizedPage = loginPage.fillLoginFormAndClick(user);
         driver.manage().timeouts().pageLoadTimeout(10000, TimeUnit.MILLISECONDS);
         assertTrue(authorizedPage.isOrderButtonVisible());
+
+        userResponse = userClient.postUserLogin(user).extract().body().as(UserResponse.class);
     }
 
     @Test
@@ -63,5 +71,8 @@ public class RegistrationTests {
     @DisplayName("Закрытие браузера")
     public void after() {
         driver.quit();
+        if (userResponse.getAccessToken() != null) {
+            userClient.deleteUser(userResponse.getAccessToken());
+        }
     }
 }

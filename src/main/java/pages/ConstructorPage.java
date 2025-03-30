@@ -1,4 +1,5 @@
 package pages;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -18,21 +19,21 @@ public class ConstructorPage {
     private final By bunsTitle = By.xpath(".//span[text()='Булки']");
 
     //активный заголовок раздела "Булки"
-    private final By bunsTitleActive = By.xpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Булки']");
+    private final By bunsTitleActive = By.xpath(".//div[contains(@class='current')]/span[text()='Булки']");
 
     //заголовок раздела "Соусы"
     private final By saucesTitle = By.xpath(".//span[text()='Соусы']");
 
     //активный заголовок раздела "Соусы"
-    private final By saucesTitleActive = By.xpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Соусы']");
+    private final By saucesTitleActive = By.xpath(".//div[contains(@class='current')]/span[text()='Соусы']");
 
     //заголовок раздела "Начинки"
     private final By fillerTitle = By.xpath(".//span[text()='Начинки']");
 
     //активный заголовок раздела "Начинки"
-    private final By fillerTitleActive = By.xpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span[text()='Начинки']");
+    private final By fillerTitleActive = By.xpath(".//div[contains(@class='current')]/span[text()='Начинки']");
 
-
+//.//button[contains(@class,'header')]
     //кнопка "Войти в аккаунт"
     private final By loginButton = By.xpath(".//button[text() = 'Войти в аккаунт']");
 
@@ -44,6 +45,7 @@ public class ConstructorPage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Нажатие кнопки 'Личный кабинет'")
     public PersonalPage clickPersonalAccountButton() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(personalAccountButton));
@@ -51,6 +53,7 @@ public class ConstructorPage {
         return new PersonalPage(driver);
     }
 
+    @Step("Нажатие кнопки 'Войти'")
     public LoginPage clickLoginButton() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(loginButton));
@@ -58,12 +61,14 @@ public class ConstructorPage {
         return new LoginPage(driver);
     }
 
+    @Step("Выбор раздела 'Булки'")
     public void clickBunsTitle() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(bunsTitle));
         driver.findElement(bunsTitle).click();
     }
 
+    @Step("Проверка активного раздела 'Булки'")
     public boolean isBunsActive() {
         try{
             new WebDriverWait(driver, Duration.ofSeconds(10))
@@ -75,12 +80,14 @@ public class ConstructorPage {
         }
     }
 
+    @Step("Выбор раздела 'Соусы'")
     public void clickSaucesTitle() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(saucesTitle));
         driver.findElement(saucesTitle).click();
     }
 
+    @Step("Проверка активного раздела 'Соусы'")
     public boolean isSaucesActive() {
         try{
             new WebDriverWait(driver, Duration.ofSeconds(10))
@@ -92,12 +99,14 @@ public class ConstructorPage {
         }
     }
 
+    @Step("Выбор раздела 'Начинки'")
     public void clickFillerTitle() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(fillerTitle));
         driver.findElement(fillerTitle).click();
     }
 
+    @Step("Проверка активного раздела 'Начинки'")
     public boolean isFillersActive() {
         try{
             new WebDriverWait(driver, Duration.ofSeconds(10))
@@ -109,6 +118,7 @@ public class ConstructorPage {
         }
     }
 
+    @Step("Проверка наличия кнопки 'Оформить заказ'")
     public boolean isOrderButtonVisible() {
         try{
             new WebDriverWait(driver, Duration.ofSeconds(10))

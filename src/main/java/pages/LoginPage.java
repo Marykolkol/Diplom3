@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import model.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,6 +30,8 @@ public class LoginPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
+    @Step("Заполнение формы и нажатие кнопки 'Войти'")
     public ConstructorPage fillLoginFormAndClick(User user) {
         emailInput.sendKeys(user.getEmail());
         passwordInput.sendKeys(user.getPassword());
@@ -36,6 +39,7 @@ public class LoginPage {
         return new ConstructorPage(driver);
     }
 
+    @Step("Проверка наличия кнопки 'Войти'")
     public boolean isLoginButtonVisible() {
         try{
             new WebDriverWait(driver, Duration.ofSeconds(10))

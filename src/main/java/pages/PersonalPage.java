@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -28,6 +29,7 @@ public class PersonalPage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Нажатие кнопки 'Выход'")
     public LoginPage clickExitButton() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(exitButton));
@@ -35,6 +37,7 @@ public class PersonalPage {
         return new LoginPage(driver);
     }
 
+    @Step("Нажатие кнопки 'Конструктоп'")
     public ConstructorPage clickConstructorButton() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(constructorButton));
@@ -42,6 +45,7 @@ public class PersonalPage {
         return new ConstructorPage(driver);
     }
 
+    @Step("Нажатие логотипа")
     public ConstructorPage clickLogo() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(logo));
@@ -49,6 +53,7 @@ public class PersonalPage {
         return new ConstructorPage(driver);
     }
 
+    @Step("Проверка наличия заголовка 'Профиль'")
     public boolean isSignVisible() {
         try{
             new WebDriverWait(driver, Duration.ofSeconds(10))

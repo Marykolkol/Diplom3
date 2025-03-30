@@ -38,6 +38,22 @@ public class UserClient {
                         .all();
     }
 
+    @Step("Авторизация пользователя")
+    public ValidatableResponse postUserLogin(User user) {
+        return
+                given()
+                        .log()
+                        .all()
+                        .baseUri(STELLAR_BASE_URI)
+                        .header("Content-type", "application/json")
+                        .body(user)
+                        .when()
+                        .post("/api/auth/login")
+                        .then()
+                        .log()
+                        .all();
+    }
+
     @Step("Удаление пользователя")
     public ValidatableResponse deleteUser(String token) {
         return
